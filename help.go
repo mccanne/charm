@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/kr/text"
 	"github.com/mccanne/charm/pkg/termwidth"
-	text "github.com/tonnerre/golang-text"
 )
 
 var Help = &Spec{
