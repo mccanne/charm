@@ -3,6 +3,7 @@ package charm
 import (
 	"flag"
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/kr/text"
@@ -122,7 +123,7 @@ func header(heading string) string {
 func helpItem(heading, body string) {
 	hdr := header(heading)
 	body = hdr + "\n" + tab + body + "\n\n"
-	fmt.Print(body)
+	fmt.Fprint(os.Stderr, body)
 }
 
 func helpDesc(heading, body string) {
@@ -133,14 +134,14 @@ func helpDesc(heading, body string) {
 	if len(body) > lineWidth {
 		body = formatParagraph(body, tab, lineWidth)
 	}
-	fmt.Print(hdr + "\n" + body)
+	fmt.Fprint(os.Stderr, hdr+"\n"+body)
 }
 
 func helpList(heading string, lines []string) {
 	hdr := header(heading)
 	body := strings.Join(lines, "\n"+tab)
 	body = hdr + "\n" + tab + body + "\n\n"
-	fmt.Print(body)
+	fmt.Fprint(os.Stderr, body)
 }
 
 func optionSection(body []string) []string {
