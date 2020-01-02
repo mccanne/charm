@@ -15,6 +15,9 @@ type instance struct {
 }
 
 func newInstance(parent Command, spec *Spec) (*instance, error) {
+	if spec.New == nil {
+		return nil, fmt.Errorf("command '%s': New function is nil", spec.Name)
+	}
 	flags := flag.NewFlagSet(spec.Name, flag.ContinueOnError)
 	cmd, err := spec.New(parent, flags)
 	if err != nil {
